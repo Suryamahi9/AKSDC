@@ -1,0 +1,82 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FF0000;
+    padding: 10px;
+    color: white;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header input {
+    width: 300px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+header .menu span {
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.video-player iframe {
+    width: 800px;
+    height: 450px;
+}
+
+.video-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.video-thumbnail {
+    width: 200px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.video-thumbnail p {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
