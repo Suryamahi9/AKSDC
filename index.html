@@ -1,228 +1,342 @@
 <!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Homepage Clone | CodingNepal</title>
+    <!-- Linking Unicons For Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="sidebar-hidden">
+    <div class="container">
+      <!-- Header / Navbar -->
+      <header>
+        <nav class="navbar">
+          <div class="nav-section nav-left">
+            <button class="nav-button menu-button">
+              <i class="uil uil-bars"></i>
+            </button>
+            <a href="#" class="nav-logo">
+              <img src="images/logo.png" alt="Logo" class="logo-image" />
+              <h2 class="logo-text">CnTube</h2>
+            </a>
+          </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="DevOps Website - Services, Solutions, Automation">
-    <title>DevOps Solutions</title>
+          <div class="nav-section">
+            <button class="nav-button search-back-button" id="search-back-button">
+              <i class="uil uil-arrow-left"></i>
+            </button>
+          </div>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7fa;
-            color: #333;
-        }
+          <div class="nav-section nav-center">
+            <form action="#" class="search-form">
+              <input type="search" placeholder="Search" class="search-input" required />
+              <button class="nav-button search-button">
+                <i class="uil uil-search"></i>
+              </button>
+            </form>
+            <button class="nav-button mic-button">
+              <i class="uil uil-microphone"></i>
+            </button>
+          </div>
 
-        header {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-        }
+          <div class="nav-section nav-right">
+            <button class="nav-button search-button" id="search-button">
+              <i class="uil uil-search"></i>
+            </button>
+            <button class="nav-button theme-button">
+              <i class="uil uil-moon"></i>
+            </button>
+            <img src="images/user.jpg" alt="User Image" class="user-image" />
+          </div>
+        </nav>
+      </header>
 
-        nav {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            background-color: #34495e;
-        }
+      <!-- Main Layout -->
+      <main class="main-layout">
+        <div class="screen-overlay"></div>
 
-        nav a {
-            padding: 15px 30px;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <div class="nav-section nav-left">
+            <button class="nav-button menu-button">
+              <i class="uil uil-bars"></i>
+            </button>
+            <a href="#" class="nav-logo">
+              <img src="images/logo.png" alt="Logo" class="logo-image" />
+              <h2 class="logo-text">CnTube</h2>
+            </a>
+          </div>
 
-        nav a:hover {
-            background-color: #16a085;
-        }
-
-        section {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #666;
-        }
-
-        .service-cards {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background-color: #ffffff;
-            padding: 20px;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            text-align: center;
-        }
-
-        .service-card img {
-            max-width: 100px;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin: 20px 0;
-            font-size: 24px;
-            color: #2c3e50;
-        }
-
-        .service-card p {
-            font-size: 16px;
-            color: #777;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .contact-form button {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .contact-form button:hover {
-            background-color: #16a085;
-        }
-
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            margin-top: 20px;
-        }
-
-        .footer-links a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .service-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav {
-                flex-direction: column;
-            }
-
-            nav a {
-                padding: 10px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <header>
-        <h1>DevOps Solutions</h1>
-        <p>Your Partner in Continuous Integration, Continuous Delivery, and Cloud Automation</p>
-    </header>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>
-            We are a leading provider of DevOps solutions, specializing in CI/CD pipelines, cloud infrastructure, and
-            automated deployments. Our solutions help businesses streamline their software development processes, improve
-            collaboration between teams, and increase operational efficiency.
-        </p>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-cards">
-            <div class="service-card">
-                <img src="https://via.placeholder.com/100" alt="CI/CD">
-                <h3>Continuous Integration & Delivery</h3>
-                <p>Automate your build, test, and deployment pipeline to streamline your development workflow.</p>
+          <div class="links-container">
+            <div class="link-section">
+              <a href="#" class="link-item"> <i class="uil uil-estate"></i> Home </a>
+              <a href="#" class="link-item"> <i class="uil uil-video"></i> Shorts </a>
+              <a href="#" class="link-item"> <i class="uil uil-tv-retro"></i> Subscriptions </a>
             </div>
-            <div class="service-card">
-                <img src="https://via.placeholder.com/100" alt="Automation">
-                <h3>Cloud Automation</h3>
-                <p>Leverage cloud technologies like Azure, AWS, and Google Cloud to automate your infrastructure provisioning.</p>
+            <div class="section-separator"></div>
+
+            <div class="link-section">
+              <h4 class="section-title">You</h4>
+              <a href="#" class="link-item"> <i class="uil uil-user-square"></i> Your channel </a>
+              <a href="#" class="link-item"> <i class="uil uil-history"></i> History </a>
+              <a href="#" class="link-item"> <i class="uil uil-clock"></i> Watch later </a>
             </div>
-            <div class="service-card">
-                <img src="https://via.placeholder.com/100" alt="Monitoring">
-                <h3>Monitoring & Optimization</h3>
-                <p>We monitor your systems and optimize performance, ensuring maximum uptime and user satisfaction.</p>
+            <div class="section-separator"></div>
+
+            <div class="link-section">
+              <h4 class="section-title">Explore</h4>
+              <a href="#" class="link-item"> <i class="uil uil-fire"></i> Trending </a>
+              <a href="#" class="link-item"> <i class="uil uil-music"></i> Music </a>
+              <a href="#" class="link-item"> <i class="uil uil-basketball"></i> Gaming </a>
+              <a href="#" class="link-item"> <i class="uil uil-trophy"></i> Sports </a>
             </div>
+            <div class="section-separator"></div>
+
+            <div class="link-section">
+              <h4 class="section-title">More from YouTube</h4>
+              <a href="#" class="link-item"> <i class="uil uil-shield-plus"></i> YouTube Plus </a>
+              <a href="#" class="link-item"> <i class="uil uil-headphones-alt"></i> YouTube Music </a>
+              <a href="#" class="link-item"> <i class="uil uil-airplay"></i> YouTube Kids </a>
+            </div>
+            <div class="section-separator"></div>
+
+            <div class="link-section">
+              <a href="#" class="link-item"> <i class="uil uil-setting"></i> Settings </a>
+              <a href="#" class="link-item"> <i class="uil uil-file-medical-alt"></i> Report </a>
+              <a href="#" class="link-item"> <i class="uil uil-question-circle"></i> Help </a>
+              <a href="#" class="link-item"> <i class="uil uil-exclamation-triangle"></i> Feedback </a>
+            </div>
+          </div>
+        </aside>
+
+        <div class="content-wrapper">
+          <!-- Category List -->
+          <div class="category-list">
+            <button class="category-button active">All</button>
+            <button class="category-button">Website</button>
+            <button class="category-button">Music</button>
+            <button class="category-button">Gaming</button>
+            <button class="category-button">Node.js</button>
+            <button class="category-button">JavaScript</button>
+            <button class="category-button">React.js</button>
+            <button class="category-button">TypeScript</button>
+            <button class="category-button">Coding</button>
+            <button class="category-button">Next.js</button>
+            <button class="category-button">Data analysis</button>
+            <button class="category-button">Web design</button>
+            <button class="category-button">HTML</button>
+            <button class="category-button">Tailwind</button>
+            <button class="category-button">CSS</button>
+            <button class="category-button">Express.js</button>
+          </div>
+
+          <!-- Video List -->
+          <div class="video-list">
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/OORUHkgg4IM/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">10:03</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Top 10 Easy To Create JavaScript Games For Beginners</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">27K Views • 4 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/qOO6lVMhmGc/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">23:45</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/LrCNrwOMkNOpLKnRl0GgvIQOgo1mR90oXa1pjbuSRIRBT3_FMTYUbdEllsUTxt7Wq8-qPOdd=s160-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">How to make Responsive Card Slider in HTML CSS & JavaScript</h2>
+                  <p class="channel-name">CodingLab</p>
+                  <p class="views">42K Views • 1 year ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/YEloDYy3DTg/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">29:43</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Create A Responsive Website with Login & Registration Form in HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">68K Views • 9 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/hSSdc8vKP1I/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">38:45</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Build Hangman Game in HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">57K Views • 11 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/coj-l7IrwGU/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">19:27</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">How to Make Chrome Extension in HTML CSS & JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">24K Views • 1 year ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/6QE8dXq9SOE/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">16:24</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Create A Draggable Card Slider in HTML CSS and Vanilla JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">14.2K Views • 4 days ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/q4RgxiDM6v0/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">37:13</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/LrCNrwOMkNOpLKnRl0GgvIQOgo1mR90oXa1pjbuSRIRBT3_FMTYUbdEllsUTxt7Wq8-qPOdd=s160-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">How to make Responsive Image Slider in HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingLab</p>
+                  <p class="views">1M Views • 1 year ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/DLs1X9T1GcY/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">9:27</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Create Text Typing Effect in HTML CSS & Vanilla JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">17K Views • 10 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/PsNaoDhzQm0/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">25:27</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Create Responsive Image Slider in HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">157K Views • 9 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/20Qb7pNMv-4/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">12:24</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/LrCNrwOMkNOpLKnRl0GgvIQOgo1mR90oXa1pjbuSRIRBT3_FMTYUbdEllsUTxt7Wq8-qPOdd=s160-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Make A Flipping Card UI Design in HTML & CSS</h2>
+                  <p class="channel-name">CodingLab</p>
+                  <p class="views">85K Views • 2 months ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/_RSaI2CxlXU/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">30:20</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Easy way to do Multiple File Uploading using HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">7.4K Views • 3 weeks ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/cHkN82X3KNU/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">11:13</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/LrCNrwOMkNOpLKnRl0GgvIQOgo1mR90oXa1pjbuSRIRBT3_FMTYUbdEllsUTxt7Wq8-qPOdd=s160-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Build A Responsive Calculator in HTML CSS & JavaScript</h2>
+                  <p class="channel-name">CodingLab</p>
+                  <p class="views">30K Views • 2 years ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/0_Lwi5ucGwM/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">39:43</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/DRtVBjk2Noax94hHqr8yCcEjhNUhHRvyzBE3qS9WWilnE1-uQQNVnQd8mdG9h_IvNZCRApZSQw=s176-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Build A Currency Converter using ReactJS</h2>
+                  <p class="channel-name">CodingNepal</p>
+                  <p class="views">7.2K • 2 weeks ago</p>
+                </div>
+              </div>
+            </a>
+            <a href="#" class="video-card">
+              <div class="thumbnail-container">
+                <img src="https://i.ytimg.com/vi/AyV954yKRSw/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail" />
+                <p class="duration">1:37:13</p>
+              </div>
+              <div class="video-info">
+                <img src="https://yt3.googleusercontent.com/LrCNrwOMkNOpLKnRl0GgvIQOgo1mR90oXa1pjbuSRIRBT3_FMTYUbdEllsUTxt7Wq8-qPOdd=s160-c-k-c0x00ffffff-no-rj" alt="Channel Logo" class="icon" />
+                <div class="video-details">
+                  <h2 class="title">Responsive Admin Dashboard Panel in HTML CSS and JavaScript</h2>
+                  <p class="channel-name">CodingLab</p>
+                  <p class="views">161K Views • 1 year ago</p>
+                </div>
+              </div>
+            </a>
+          </div>
         </div>
-    </section>
+      </main>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Get in touch with us for more information about how we can help you implement DevOps in your organization.</p>
-        <form class="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 DevOps Solutions. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Support</a>
-        </div>
-    </footer>
-
-</body>
-
+    <!-- Linking custom script -->
+    <script src="script.js"></script>
+  </body>
 </html>
