@@ -117,15 +117,14 @@ jobs:
         run: |
           sed -e "s|{{REGISTRY_NAME}}|${{ env.REGISTRY_NAME }}|g" \
               -e "s|{{GITHUB_SHA}}|${{ github.sha }}|g" \
-              k8s/deployment.yml > k8s/deployment-substituted.yml
+              k8s/deployment.yaml > k8s/deployment-file.yaml
   
       # Deploy to Kubernetes
       - name: Deploy to AKS
         uses: azure/k8s-deploy@v1
         with:
           manifests: |
-            k8s/deployment-substituted.yml
-            k8s/service.yml
+            k8s/deployment-file.yaml
           images: |
             ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_NAME }}:${{ github.sha }}
           imagepullsecrets: |
