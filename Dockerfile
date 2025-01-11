@@ -3,6 +3,7 @@ FROM nginx:alpine
 
 # Copy the HTML content into the nginx container
 COPY index.html /usr/share/nginx/html/
+COPY styles.css /usr/share/nginx/html/
 
 
 # Expose port 80 (default for Nginx)
