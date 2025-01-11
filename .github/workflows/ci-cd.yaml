@@ -63,15 +63,7 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       
-      - name: "Terraform Import"
-        id: import
-        run: terraform import azurerm_resource_group.rg1 /subscriptions/6f056c81-6e01-4bd7-bd60-cf73b6c1888a/resourceGroups/rg-prod
-        working-directory: terraform
-        env:
-          ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
-          ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      
 
       - name: "Terraform Plan"
         id: plan
