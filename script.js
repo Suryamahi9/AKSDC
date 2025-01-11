@@ -1,14 +1,16 @@
-// Get the video player iframe element
-const videoPlayer = document.getElementById("video-player");
+function clearDisplay() {
+    document.getElementById('display').value = '';
+}
 
-// Get all video thumbnails
-const videoThumbnails = document.querySelectorAll(".video");
+function appendToDisplay(value) {
+    document.getElementById('display').value += value;
+}
 
-// Add event listeners to video thumbnails to update the video player
-videoThumbnails.forEach(video => {
-  video.addEventListener("click", function() {
-    const videoId = this.getAttribute("data-video-id"); // Get the video ID from data attribute
-    // Update the iframe src to load the clicked video
-    videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
-  });
-});
+function calculate() {
+    let display = document.getElementById('display').value;
+    try {
+        document.getElementById('display').value = eval(display);
+    } catch (e) {
+        alert('Invalid expression');
+    }
+}
