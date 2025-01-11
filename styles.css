@@ -1,91 +1,45 @@
-/* Reset margins and paddings */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Body styling */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Header styling */
-.header {
-  background-color: #ff0000;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 24px;
+.calculator {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
 }
 
-/* Container for the video player and thumbnails */
-.container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-/* Video player section */
-.video-player {
-  width: 70%;
-  margin-right: 20px;
-}
-
-/* Video thumbnails section */
-.video-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  width: 30%;
-  margin-top: 10px;
-}
-
-/* Styling for each video thumbnail */
-.video img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.video img:hover {
-  transform: scale(1.05);
-}
-
-/* Styling for video title */
-.video h3 {
-  text-align: center;
-  font-size: 16px;
-  margin-top: 10px;
-  color: #333;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.video h3:hover {
-  color: #ff0000;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-  .video-thumbnails {
-    grid-template-columns: repeat(2, 1fr);
+#display {
     width: 100%;
-  }
-
-  .video-player {
-    width: 100%;
-    margin-right: 0;
-  }
+    height: 40px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
 }
 
-@media (max-width: 480px) {
-  .video-thumbnails {
-    grid-template-columns: 1fr;
-  }
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #f0f0f0;
 }
