@@ -13,5 +13,5 @@ subnet_address_prefix = ["10.0.1.0/24"]
 # AKS Cluster Configuration
 aks_cluster_name    = "prod-aks-cluster"
 aks_dns_prefix      = "prodaks"
-node_count          = 3
+node_count          = 2
 vm_size             = "Standard_DS3_v2"
