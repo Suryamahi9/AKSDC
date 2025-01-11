@@ -1,211 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #e9eff1;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+        .google-logo {
+            width: 272px;
+            height: 92px;
+            background: url('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png') no-repeat center center;
+            background-size: contain;
+        }
 
-    h1 {
-      color: #1877f2;
-      font-size: 3rem;
-      text-align: center;
-    }
+        .search-container {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* Navbar */
-    .navbar {
-      background-color: #1877f2;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-    }
+        .search-input {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
 
-    .navbar .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-    }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-    /* Login Form */
-    .login-container {
-      max-width: 500px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      color: #1877f2;
-    }
-
-    .login-container input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .login-container button {
-      width: 100%;
-      padding: 12px;
-      background-color: #42b72a;
-      border: none;
-      color: white;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .login-container button:hover {
-      background-color: #36a420;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      color: #555;
-    }
-
-    .footer a {
-      text-decoration: none;
-      color: #1877f2;
-    }
-
-    /* Feed Section */
-    .feed {
-      display: none;
-      padding: 20px;
-      background-color: white;
-      margin-top: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .feed h3 {
-      text-align: center;
-      color: #1877f2;
-    }
-
-    .feed .post {
-      background-color: #f0f2f5;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-
-    .feed .post h4 {
-      margin-bottom: 10px;
-      color: #1877f2;
-    }
-
-    .feed .post p {
-      margin: 0;
-      color: #333;
-    }
-
-    .feed .post .actions {
-      margin-top: 10px;
-    }
-
-    .feed .post .actions button {
-      background-color: #1877f2;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .feed .post .actions button:hover {
-      background-color: #165e99;
-    }
-
-  </style>
+        .buttons button:hover {
+            background-color: #e2e2e2;
+        }
+    </style>
 </head>
 <body>
-
-  <div class="container">
-    <!-- Navbar -->
-    <div class="navbar">
-      <a href="#" class="logo">Facebook</a>
-    </div>
-
-    <!-- Login Form -->
-    <div class="login-container">
-      <h2>Facebook Login</h2>
-      <input type="text" id="email" placeholder="Email or Phone">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="login()">Log In</button>
-      <p style="text-align: center;">Don't have an account? <a href="#">Sign up</a></p>
-    </div>
-
-    <!-- Feed Section (Hidden Initially) -->
-    <div class="feed" id="feed">
-      <h3>News Feed</h3>
-      <div class="post">
-        <h4>John Doe</h4>
-        <p>Just got back from a trip to Paris! It was amazing!</p>
-        <div class="actions">
-          <button>Like</button>
-          <button>Comment</button>
+    <div class="google-logo"></div>
+    <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search Google or type a URL">
+        <div class="buttons">
+            <button onclick="googleSearch()">Google Search</button>
+            <button onclick="feelingLucky()">I'm Feeling Lucky</button>
         </div>
-      </div>
-      <div class="post">
-        <h4>Jane Smith</h4>
-        <p>Check out my new blog post on Web Development!</p>
-        <div class="actions">
-          <button>Like</button>
-          <button>Comment</button>
-        </div>
-      </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      <p>Facebook Clone created for educational purposes. <a href="#">Learn More</a></p>
-    </div>
-  </div>
+    <script>
+        document.getElementById("searchInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                googleSearch();
+            }
+        });
 
-  <script>
-    // JavaScript for login functionality
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+        function googleSearch() {
+            const query = document.getElementById("searchInput").value;
+            alert("Google Search for: " + query);
+            // Here you could redirect to a search results page or perform an actual search
+        }
 
-      // Simple validation (In real-world apps, this would be a backend verification)
-      if (email === "user@example.com" && password === "password123") {
-        // Hide the login container and show the feed section
-        document.querySelector(".login-container").style.display = "none";
-        document.getElementById("feed").style.display = "block";
-      } else {
-        alert("Invalid email or password!");
-      }
-    }
-  </script>
-
+        function feelingLucky() {
+            alert("I'm Feeling Lucky!");
+            // Here you could redirect to a random result or perform another action
+        }
+    </script>
 </body>
 </html>
