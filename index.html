@@ -4,7 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Google Clone</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .google-logo img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+    }
+
+    #search-bar {
+      width: 500px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 24px;
+      border: 1px solid #dcdcdc;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      background-color: #f8f8f8;
+      border: 1px solid #dcdcdc;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -22,6 +73,27 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // JavaScript Functions
+    function search() {
+      const query = document.getElementById('search-bar').value;
+      if (query) {
+        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        window.location.href = url;  // Redirect to Google search results
+      } else {
+        alert('Please enter a search term!');
+      }
+    }
+
+    function feelingLucky() {
+      const query = document.getElementById('search-bar').value;
+      if (query) {
+        const url = `https://www.google.com/search?btnI=I+%27m+Feeling+Lucky&q=${encodeURIComponent(query)}`;
+        window.location.href = url;  // Redirect to "I'm Feeling Lucky"
+      } else {
+        alert('Please enter a search term!');
+      }
+    }
+  </script>
 </body>
 </html>
