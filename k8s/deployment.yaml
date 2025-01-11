@@ -1,32 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mydockerapi-deployment
+  name: nginx-deployment
+  namespace: prod  # Namespace in which to deploy the Nginx container
 spec:
-  replicas: 2
+  replicas: 1  # Deploy one replica of the Nginx container
   selector:
     matchLabels:
-      app: mydockerapi
+      app: nginx  # Used to match the Deployment to the Pods
   template:
     metadata:
       labels:
-        app: mydockerapi
+        app: nginx  # This label is used by the Service to match Pods
     spec:
       containers:
-      - name: mydockerapi
-        image: myacrrepo.azurecr.io/mydockerapi:v1
+      - name: nginx  # Container name
+        image: acrnew1.azurecr.io/my-app:${{ github.sha }}  # Replace with your image and tag
         ports:
-        - containerPort: 80
+        - containerPort: 80  # Exposing port 80 from the container
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mydockerapi-service
+  name: nginx-service
+  namespace: prod  # Namespace to match the deployment
 spec:
   selector:
-    app: mydockerapi
+    app: nginx  # Match the Pods that have the app: nginx label
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: LoadBalancer
+      port: 80  # Exposing port 80 externally
+      targetPort: 80  # Target port inside the container
+  type: LoadBalancer  # Expose the service through a LoadBalancer
