@@ -1,46 +1,18 @@
-const menuButtons = document.querySelectorAll(".menu-button");
-const screenOverlay = document.querySelector(".main-layout .screen-overlay");
-const themeButton = document.querySelector(".navbar .theme-button i");
-const searchButton = document.querySelector("#search-button");
-const searchBackButton = document.querySelector("#search-back-button");
+// Get all video thumbnails
+const videoThumbnails = document.querySelectorAll('.video-thumbnail');
 
-// Toggle sidebar visibility when menu buttons are clicked
-menuButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    document.body.classList.toggle("sidebar-hidden");
-  });
+// Get the iframe element for the video player
+const videoPlayer = document.getElementById('videoPlayer');
+
+// Add click event listener to each thumbnail
+videoThumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', function() {
+        const videoId = this.getAttribute('data-video-id');
+        changeVideo(videoId);
+    });
 });
 
-// Toggle sidebar visibility when screen overlay is clicked
-screenOverlay.addEventListener("click", () => {
-  document.body.classList.toggle("sidebar-hidden");
-});
-
-// Initialize dark mode based on localStorage
-if (localStorage.getItem("darkMode") === "enabled") {
-  document.body.classList.add("dark-mode");
-  themeButton.classList.replace("uil-moon", "uil-sun");
-} else {
-  themeButton.classList.replace("uil-sun", "uil-moon");
+// Function to change the video source in the iframe
+function changeVideo(videoId) {
+    videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
 }
-
-// Toggle dark mode when theme button is clicked
-themeButton.addEventListener("click", () => {
-  const isDarkMode = document.body.classList.toggle("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
-  themeButton.classList.toggle("uil-sun", isDarkMode);
-  themeButton.classList.toggle("uil-moon", !isDarkMode);
-});
-
-// Show sidebar on large screens by default
-if (window.innerWidth >= 768) {
-  document.body.classList.remove("sidebar-hidden");
-}
-
-// Toggle search bar on click on mobile
-const toggleSearchBar = () => {
-  document.body.classList.toggle("show-mobile-search");
-};
-
-searchButton.addEventListener("click", toggleSearchBar);
-searchBackButton.addEventListener("click", () => searchButton.click());
