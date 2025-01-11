@@ -96,3 +96,18 @@ jobs:
           client-secret: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
           tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+
+       # Create Kubernetes namespace
+      - name: Create Kubernetes Namespace
+        run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run=client -o json | kubectl apply -f -
+  
+      # Create Kubernetes secret for registry access
+      - name: Create Kubernetes Secret
+        uses: azure/k8s-create-secret@v1
+        with:
+          container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
+          namespace: ${{ env.NAMESPACE }}
