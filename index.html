@@ -1,29 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Theme Clock</title>
-  </head>
-  <body>
-    <!-- Inspired by this dribbble shot https://dribbble.com/shots/5958443-Alarm-clock -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Application</h1>
+        <div class="search-bar">
+            <input type="text" id="city" placeholder="Enter city">
+            <button onclick="getWeather()">Get Weather</button>
+        </div>
 
-    <button class="toggle">Dark mode</button>
-
-    <div class="clock-container">
-      <div class="clock">
-        <div class="needle hour"></div>
-        <div class="needle minute"></div>
-        <div class="needle second"></div>
-        <div class="center-point"></div>
-      </div>
-
-      <div class="time"></div>
-      <div class="date"></div>
+        <div class="weather-info">
+            <h2 id="city-name"></h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <p id="humidity"></p>
+            <p id="wind-speed"></p>
+        </div>
     </div>
 
-    <script src="script.js"></script>
-  </body>
+    <script src="app.js"></script>
+</body>
 </html>
