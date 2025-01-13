@@ -3,97 +3,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Clone</title>
+  <title>Guess the Number Game</title>
   <style>
-    /* CSS Styles */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f2f2f2;
     }
 
-    .container {
+    .game-container {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: 100px auto;
       text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .google-logo img {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-
-    .search-box {
-      margin-bottom: 20px;
-    }
-
-    #search-bar {
-      width: 500px;
-      padding: 15px;
-      font-size: 16px;
-      border-radius: 24px;
-      border: 1px solid #dcdcdc;
-    }
-
-    .buttons {
-      margin-top: 20px;
+    input[type="number"] {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     button {
       padding: 10px 20px;
-      font-size: 14px;
-      background-color: #f8f8f8;
-      border: 1px solid #dcdcdc;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
       border-radius: 4px;
       cursor: pointer;
-      margin: 10px;
     }
 
     button:hover {
-      background-color: #f1f1f1;
+      background-color: #45a049;
+    }
+
+    #resultMessage {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #attemptsCount {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="google-logo">
-      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png" alt="Google Logo">
-    </div>
-    
-    <div class="search-box">
-      <input type="text" id="search-bar" placeholder="Search Google or type a URL">
-    </div>
-    
-    <div class="buttons">
-      <button onclick="search()">Google Search</button>
-      <button onclick="feelingLucky()">I'm Feeling Lucky</button>
-    </div>
+  <div class="game-container">
+    <h1>Guess the Number!</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guessInput" placeholder="Enter your guess" />
+    <button id="submitGuess">Submit Guess</button>
+    <p id="resultMessage"></p>
+    <p>Attempts: <span id="attemptsCount">0</span></p>
   </div>
 
   <script>
-    // JavaScript Functions
-    function search() {
-      const query = document.getElementById('search-bar').value;
-      if (query) {
-        const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-        window.location.href = url;  // Redirect to Google search results
-      } else {
-        alert('Please enter a search term!');
+    // Initialize game variables
+    let randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    // Get DOM elements
+    const guessInput = document.getElementById('guessInput');
+    const submitGuessButton = document.getElementById('submitGuess');
+    const resultMessage = document.getElementById('resultMessage');
+    const attemptsCount = document.getElementById('attemptsCount');
+
+    // Function to check the guess
+    function checkGuess() {
+      const userGuess = parseInt(guessInput.value);
+
+      if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+        resultMessage.textContent = "Please enter a number between 1 and 100.";
+        resultMessage.style.color = 'red';
+        return;
       }
+
+      attempts++;
+      attemptsCount.textContent = attempts;
+
+      if (userGuess === randomNumber) {
+        resultMessage.textContent = "Congratulations! You guessed the right number!";
+        resultMessage.style.color = 'green';
+        submitGuessButton.disabled = true;  // Disable button after win
+      } else if (userGuess < randomNumber) {
+        resultMessage.textContent = "Too low! Try again.";
+        resultMessage.style.color = 'orange';
+      } else {
+        resultMessage.textContent = "Too high! Try again.";
+        resultMessage.style.color = 'orange';
+      }
+
+      // Clear the input field after each guess
+      guessInput.value = '';
     }
 
-    function feelingLucky() {
-      const query = document.getElementById('search-bar').value;
-      if (query) {
-        const url = `https://www.google.com/search?btnI=I+%27m+Feeling+Lucky&q=${encodeURIComponent(query)}`;
-        window.location.href = url;  // Redirect to "I'm Feeling Lucky"
-      } else {
-        alert('Please enter a search term!');
-      }
-    }
+    // Add event listener to the button
+    submitGuessButton.addEventListener('click', checkGuess);
   </script>
 </body>
 </html>
