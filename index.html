@@ -1,285 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Landing Page</title>
-  <style>
-    /* Global styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hoverboard</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-    }
+      body {
+        background-color: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+      }
 
-    h1, h2, h3 {
-      font-weight: 700;
-    }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 400px;
+      }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+      .square {
+        background-color: #1d1d1d;
+        box-shadow: 0 0 2px #000;
+        height: 16px;
+        width: 16px;
+        margin: 2px;
+        transition: 2s ease;
+      }
 
-    /* Navigation styles */
-    nav {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+      .square:hover {
+        transition-duration: 0s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container"></div>
+    <script>
+      const container = document.getElementById('container')
+      const colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '#2ecc71']
+      const SQUARES = 500
 
-    nav .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      float: left;
-    }
+      for (let i = 0; i < SQUARES; i++) {
+        const square = document.createElement('div')
+        square.classList.add('square')
 
-    nav .nav-links {
-      list-style: none;
-      float: right;
-    }
+        square.addEventListener('mouseover', () => setColor(square))
 
-    nav .nav-links li {
-      display: inline;
-      margin-left: 20px;
-    }
+        square.addEventListener('mouseout', () => removeColor(square))
 
-    nav .nav-links a {
-      color: #fff;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+        container.appendChild(square)
+      }
 
-    nav .nav-links a:hover {
-      color: #ff6f61;
-    }
+      function setColor(element) {
+        const color = getRandomColor()
+        element.style.background = color
+        element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
+      }
 
-    /* Home Section */
-    .home-section {
-      background-image: url('https://via.placeholder.com/1920x800');
-      background-size: cover;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
-      height: 100vh;
-      background-position: center;
-    }
+      function removeColor(element) {
+        element.style.background = '#1d1d1d'
+        element.style.boxShadow = '0 0 2px #000'
+      }
 
-    .home-section h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .home-section p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-
-    .home-section .cta-button {
-      background-color: #ff6f61;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1rem;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    .home-section .cta-button:hover {
-      background-color: #e05e53;
-    }
-
-    /* About Section */
-    .about-section {
-      padding: 50px 20px;
-      background-color: #fff;
-      text-align: center;
-    }
-
-    .about-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .about-section .about-image {
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      margin-top: 20px;
-      object-fit: cover;
-    }
-
-    /* Services Section */
-    .services-section {
-      padding: 50px 20px;
-      background-color: #f4f4f4;
-      text-align: center;
-    }
-
-    .services-section h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-    .services-section .service {
-      display: inline-block;
-      width: 30%;
-      padding: 20px;
-      background-color: white;
-      margin: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .services-section .service:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .services-section .service h3 {
-      margin-top: 15px;
-    }
-
-    .services-section .service-image {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    /* Contact Section */
-    .contact-section {
-      padding: 50px 20px;
-      background-color: #fff;
-      text-align: center;
-    }
-
-    .contact-section form {
-      width: 60%;
-      margin: 0 auto;
-    }
-
-    .contact-section input,
-    .contact-section textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .contact-section button {
-      background-color: #ff6f61;
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .contact-section button:hover {
-      background-color: #e05e53;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">MyWebsite</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Home Section -->
-  <section id="home" class="home-section">
-    <div class="home-content">
-      <h1>Welcome to My Professional Website</h1>
-      <p>High-quality design, great user experience, and innovation.</p>
-      <a href="#about" class="cta-button">Learn More</a>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <h2>About Me</h2>
-    <p>I'm a professional web designer and developer with a passion for creating high-quality, user-friendly websites.</p>
-    <img src="https://via.placeholder.com/300" alt="About Me" class="about-image">
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="services-section">
-    <h2>Services</h2>
-    <div class="service">
-      <img src="https://via.placeholder.com/150" alt="Web Design" class="service-image">
-      <h3>Web Design</h3>
-      <p>Beautiful, responsive websites that are user-friendly.</p>
-    </div>
-    <div class="service">
-      <img src="https://via.placeholder.com/150" alt="Development" class="service-image">
-      <h3>Web Development</h3>
-      <p>Cutting-edge web development services to build fast, scalable websites.</p>
-    </div>
-    <div class="service">
-      <img src="https://via.placeholder.com/150" alt="SEO" class="service-image">
-      <h3>SEO Optimization</h3>
-      <p>Optimize your website to rank higher in search engines.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <h2>Contact Me</h2>
-    <form action="#" method="POST">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 MyWebsite. All Rights Reserved.</p>
-  </footer>
-
-  <script>
-    // Smooth scrolling functionality for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      });
-    });
-  </script>
-
-</body>
+      function getRandomColor() {
+        return colors[Math.floor(Math.random() * colors.length)]
+      }
+    </script>
+  </body>
 </html>
