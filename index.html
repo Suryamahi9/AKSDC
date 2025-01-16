@@ -1,199 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie App</title>
+    <title>Theme Clock</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Heebo:300&display=swap');
 
-        :root {
-            --primary-color: #22254b;
-            --secondary-color: #373b69;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        * {
-            box-sizing: border-box;
-        }
+      :root {
+        --primary-color: #000;
+        --secondary-color: #fff;
+      }
 
-        body {
-            background-color: var(--primary-color);
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-        }
+      html {
+        transition: all 0.5s ease-in;
+      }
 
-        header {
-            padding: 1rem;
-            display: flex;
-            justify-content: flex-end;
-            background-color: var(--secondary-color);
-        }
+      html.dark {
+        --primary-color: #fff;
+        --secondary-color: #333;
+      }
 
-        .search {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            border-radius: 50px;
-            font-family: inherit;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            color: #fff;
-        }
+      html.dark {
+        background-color: #111;
+        color: var(--primary-color);
+      }
 
-        .search::placeholder {
-            color: #7378c5;
-        }
+      body {
+        font-family: 'Heebo', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+      }
 
-        .search:focus {
-            outline: none;
-            background-color: var(--primary-color);
-        }
+      .toggle {
+        cursor: pointer;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border: 0;
+        border-radius: 4px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 100px;
+      }
 
-        main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+      .toggle:focus {
+        outline: none;
+      }
 
-        .movie {
-            width: 300px;
-            margin: 1rem;
-            background-color: var(--secondary-color);
-            box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            border-radius: 3px;
-        }
+      .clock-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .movie img {
-            width: 100%;
-        }
+      .clock {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
 
-        .movie-info {
-            color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.2rem;
-            padding: 0.5rem 1rem 1rem;
-            letter-spacing: 0.5px;
-        }
+      .needle {
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 65px;
+        width: 3px;
+        transform-origin: bottom center;
+        transition: all 0.5s ease-in linear;
+      }
 
-        .movie-info h3 {
-            margin-top: 0;
-        }
+      .needle.hour {
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
 
-        .movie-info span {
-            background-color: var(--primary-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-weight: bold;
-        }
+      .needle.minute {
+        transform: translate(-50%, -100%) rotate(0deg);
+        height: 100px;
+      }
 
-        .movie-info span.green {
-            color: lightgreen;
-        }
+      .needle.second {
+        transform: translate(-50%, -100%) rotate(0deg);
+        height: 100px;
+        background-color: #e74c3c;
+      }
 
-        .movie-info span.orange {
-            color: orange;
-        }
+      .center-point {
+        background-color: #e74c3c;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
 
-        .movie-info span.red {
-            color: red;
-        }
+      .center-point::after {
+        content: '';
+        background-color: var(--primary-color);
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+      }
 
-        .overview {
-            background-color: #fff;
-            padding: 2rem;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            max-height: 100%;
-            transform: translateY(101%);
-            overflow-y: auto;
-            transition: transform 0.3s ease-in;
-        }
+      .time {
+        font-size: 60px;
+      }
 
-        .movie:hover .overview {
-            transform: translateY(0);
-        }
+      .date {
+        color: #aaa;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      .date .circle {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border-radius: 50%;
+        height: 18px;
+        width: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 18px;
+        transition: all 0.5s ease-in;
+        font-size: 12px;
+      }
     </style>
-</head>
-<body>
-    <header>
-        <form id="form">
-            <input type="text" id="search" class="search" placeholder="Search">
-        </form>
-    </header>
+  </head>
+  <body>
+    <!-- Inspired by this dribbble shot https://dribbble.com/shots/5958443-Alarm-clock -->
 
-    <main id="main"></main>
+    <button class="toggle">Dark mode</button>
+
+    <div class="clock-container">
+      <div class="clock">
+        <div class="needle hour"></div>
+        <div class="needle minute"></div>
+        <div class="needle second"></div>
+        <div class="center-point"></div>
+      </div>
+
+      <div class="time"></div>
+      <div class="date"></div>
+    </div>
 
     <script>
-        const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1'
-        const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-        const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="'
+      const hourEl = document.querySelector('.hour')
+      const minuteEl = document.querySelector('.minute')
+      const secondEl = document.querySelector('.second')
+      const timeEl = document.querySelector('.time')
+      const dateEl = document.querySelector('.date')
+      const toggle = document.querySelector('.toggle')
 
-        const main = document.getElementById('main')
-        const form = document.getElementById('form')
-        const search = document.getElementById('search')
+      const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        // Get initial movies
-        getMovies(API_URL)
-
-        async function getMovies(url) {
-            const res = await fetch(url)
-            const data = await res.json()
-
-            showMovies(data.results)
+      toggle.addEventListener('click', (e) => {
+        const html = document.querySelector('html')
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark')
+          e.target.innerHTML = 'Dark mode'
+        } else {
+          html.classList.add('dark')
+          e.target.innerHTML = 'Light mode'
         }
+      })
 
-        function showMovies(movies) {
-            main.innerHTML = ''
+      function setTime() {
+        const time = new Date();
+        const month = time.getMonth()
+        const day = time.getDay()
+        const date = time.getDate()
+        const hours = time.getHours()
+        const hoursForClock = hours >= 13 ? hours % 12 : hours;
+        const minutes = time.getMinutes()
+        const seconds = time.getSeconds()
+        const ampm = hours >= 12 ? 'PM' : 'AM'
 
-            movies.forEach((movie) => {
-                const { title, poster_path, vote_average, overview } = movie
+        hourEl.style.transform = `translate(-50%, -100%) rotate(${scale(hoursForClock, 0, 12, 0, 360)}deg)`
+        minuteEl.style.transform = `translate(-50%, -100%) rotate(${scale(minutes, 0, 60, 0, 360)}deg)`
+        secondEl.style.transform = `translate(-50%, -100%) rotate(${scale(seconds, 0, 60, 0, 360)}deg)`
 
-                const movieEl = document.createElement('div')
-                movieEl.classList.add('movie')
+        timeEl.innerHTML = `${hoursForClock}:${minutes < 10 ? `0${minutes}` : minutes} ${ampm}`
+        dateEl.innerHTML = `${days[day]}, ${months[month]} <span class="circle">${date}</span>`
+      }
 
-                movieEl.innerHTML = `
-                    <img src="${IMG_PATH + poster_path}" alt="${title}">
-                    <div class="movie-info">
-                        <h3>${title}</h3>
-                        <span class="${getClassByRate(vote_average)}">${vote_average}</span>
-                    </div>
-                    <div class="overview">
-                        <h3>Overview</h3>
-                        ${overview}
-                    </div>
-                `
-                main.appendChild(movieEl)
-            })
-        }
+      // StackOverflow https://stackoverflow.com/questions/10756313/javascript-jquery-map-a-range-of-numbers-to-another-range-of-numbers
+      const scale = (num, in_min, in_max, out_min, out_max) => {
+        return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+      }
 
-        function getClassByRate(vote) {
-            if(vote >= 8) {
-                return 'green'
-            } else if(vote >= 5) {
-                return 'orange'
-            } else {
-                return 'red'
-            }
-        }
+      setTime()
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()
-
-            const searchTerm = search.value
-
-            if(searchTerm && searchTerm !== '') {
-                getMovies(SEARCH_API + searchTerm)
-
-                search.value = ''
-            } else {
-                window.location.reload()
-            }
-        })
+      setInterval(setTime, 1000)
     </script>
-</body>
+  </body>
 </html>
